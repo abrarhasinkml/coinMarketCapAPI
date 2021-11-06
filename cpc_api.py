@@ -4,7 +4,9 @@ import json
 import sys
 
 sys.path.insert(1, '.\secrets')
+
 from secrets import *
+from crypto_symbols import *
 
 headers = {
     'Accepts': 'application/json',
@@ -15,8 +17,10 @@ session = Session()
 session.headers.update(headers)
 
 try:
-    response = session.get(quotes_url+'?symbol=SHIB')
-    data = json.loads(response.text)['data']
-    print(data)
+    for crypt in crypto:
+        response = session.get(quotes_url+'?symbol='+crypt)
+        data = list(json.loads(response.text)['data'].values())[0]['quote']
+        quote = list(data.values())[0]
+        print(quote['price'])
 except(ConnectionError, Timeout, TooManyRedirects) as error:
     print(error)
