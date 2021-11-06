@@ -16,7 +16,7 @@ session.headers.update(headers)
 
 try:
     response = session.get(quotes_url+'?symbol=SHIB')
-    data = json.loads(response.text)
-    print(data['data'])
+    data = json.loads(response.text)['data']
+    print(data)
 except(ConnectionError, Timeout, TooManyRedirects) as error:
     print(error)
