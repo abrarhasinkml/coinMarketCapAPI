@@ -5,7 +5,7 @@ import sys
 import asyncio
 sys.path.insert(1, '.\secrets')
 
-from secrets import *
+from secrets import API_TOKEN, quotes_url
 from crypto_symbols import *
 
 headers = {
